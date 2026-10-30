@@ -1,0 +1,21 @@
+services:
+  db:
+    image: mariadb:${MARIADB_TAG:-13.0.2}
+    container_name: shortener-db
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: shortener
+      # A limited user that only has rights on the shortener database.
+      # The Python script uses this one, not root.
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+      - ./examples:/examples:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
