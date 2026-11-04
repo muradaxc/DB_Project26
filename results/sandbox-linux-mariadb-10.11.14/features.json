@@ -1,0 +1,140 @@
+{
+  "environment": {
+    "mariadb_version": "10.11.14-MariaDB-0ubuntu0.24.04.1",
+    "os": "Linux-6.18.44-fc-v233-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "cpu_count": 2,
+    "python": "3.13.18",
+    "measured_at_utc": "2026-11-04T13:14:52Z"
+  },
+  "settings": {
+    "rows": 20000,
+    "runs": 3,
+    "reruns": 200,
+    "sessions": 100
+  },
+  "results": {
+    "json_validation": {
+      "constraint": "JSON_VALID (IS JSON unsupported)",
+      "rows": 20000,
+      "insert_seconds": {
+        "app_validation": 1.6755542870000681,
+        "db_check": 1.4811857839999902
+      },
+      "bad_docs_from_second_client": 100,
+      "bad_docs_stored": {
+        "app_validation": 100,
+        "db_check": 0
+      },
+      "rejected_by_db": 100
+    },
+    "rerun_schema": {
+      "DROP IF EXISTS + CREATE": {
+        "statements_per_rerun": 2,
+        "seconds": 0.6737605439998333,
+        "reader_ok": 240,
+        "reader_errors": 268,
+        "error_codes": {
+          "1146": 268
+        }
+      },
+      "reruns": 200,
+      "CREATE OR REPLACE": {
+        "statements_per_rerun": 1,
+        "seconds": 0.7357431640000414,
+        "reader_ok": 239,
+        "reader_errors": 0,
+        "error_codes": {}
+      }
+    },
+    "cte_dml": {
+      "cte_supported": false,
+      "links": 20000,
+      "stale_links": 10000,
+      "UPDATE": {
+        "in the application": {
+          "statements": 10001,
+          "result_check": [
+            30000,
+            20000
+          ],
+          "mean": 0.9494975360000808,
+          "sd": 0.0242310588867187,
+          "min": 0.9315696670000762,
+          "max": 0.9770649070001127,
+          "runs": [
+            0.9770649070001127,
+            0.9315696670000762,
+            0.9398580340000535
+          ]
+        },
+        "subquery (older versions)": {
+          "statements": 1,
+          "result_check": [
+            30000,
+            20000
+          ],
+          "mean": 0.03807396566670226,
+          "sd": 0.00466995792667323,
+          "min": 0.033108267999978125,
+          "max": 0.04237749900016752,
+          "runs": [
+            0.03873612999996112,
+            0.04237749900016752,
+            0.033108267999978125
+          ],
+          "sql": "UPDATE feat_links JOIN (SELECT link_id, COUNT(*) AS n FROM feat_clicks GROUP BY link_id) AS counts ON counts.link_id = feat_links.id SET feat_links.click_count = counts.n"
+        },
+        "CTE (12.3+)": "unsupported"
+      },
+      "DELETE": {
+        "in the application": {
+          "statements": 10001,
+          "result_check": [
+            0,
+            10000
+          ],
+          "mean": 0.8766529679999167,
+          "sd": 0.07012457749006848,
+          "min": 0.8072696770000221,
+          "max": 0.9474960389998159,
+          "runs": [
+            0.875193187999912,
+            0.8072696770000221,
+            0.9474960389998159
+          ]
+        },
+        "subquery (older versions)": {
+          "statements": 1,
+          "result_check": [
+            0,
+            10000
+          ],
+          "mean": 0.09743816699998813,
+          "sd": 0.026590449456107706,
+          "min": 0.0789794659999643,
+          "max": 0.12791626500006714,
+          "runs": [
+            0.08541876999993292,
+            0.12791626500006714,
+            0.0789794659999643
+          ],
+          "sql": "DELETE FROM feat_links WHERE id IN (SELECT id FROM (SELECT l.id FROM feat_links l LEFT JOIN feat_clicks c ON c.link_id = l.id WHERE c.link_id IS NULL) AS stale)"
+        },
+        "CTE (12.3+)": "unsupported"
+      }
+    },
+    "global_temporary": {
+      "gtt_supported": false,
+      "sessions": 100,
+      "rows_per_session": 50,
+      "CREATE TEMPORARY TABLE per session": {
+        "ddl_statements_per_session": 1,
+        "seconds": 0.9088485990000663,
+        "each_session_saw_only_its_own_rows": true
+      },
+      "GLOBAL TEMPORARY TABLE (12.3+)": "unsupported"
+    }
+  }
+}

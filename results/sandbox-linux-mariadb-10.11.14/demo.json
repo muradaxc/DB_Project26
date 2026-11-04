@@ -1,0 +1,43 @@
+{
+  "environment": {
+    "mariadb_version": "10.11.14-MariaDB-0ubuntu0.24.04.1",
+    "os": "Linux-6.18.44-fc-v233-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "cpu_count": 2,
+    "python": "3.13.18",
+    "measured_at_utc": "2026-11-04T13:14:14Z"
+  },
+  "settings": {
+    "rows": 20000,
+    "runs": 5
+  },
+  "results": {
+    "queries_per_insert": {
+      "modern": 1.0,
+      "legacy": 2.0
+    },
+    "insert_seconds": {
+      "modern": [
+        2.3266735949998747,
+        2.210316943999942,
+        2.332737937000047,
+        2.251991144000158,
+        2.5208994279998933
+      ],
+      "legacy": [
+        4.0089175770001475,
+        3.8432231469998897,
+        4.1624063060000935,
+        4.654876113,
+        4.103622536999865
+      ]
+    },
+    "table_bytes": {
+      "links": 1589248,
+      "links_legacy": 3686400,
+      "clicks": 3178496,
+      "clicks_legacy": 5275648
+    }
+  }
+}

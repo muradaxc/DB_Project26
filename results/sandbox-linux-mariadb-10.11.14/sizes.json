@@ -1,0 +1,40 @@
+{
+  "environment": {
+    "mariadb_version": "10.11.14-MariaDB-0ubuntu0.24.04.1",
+    "os": "Linux-6.18.44-fc-v233-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "cpu_count": 2,
+    "python": "3.13.18",
+    "measured_at_utc": "2026-11-04T13:14:19Z"
+  },
+  "settings": {
+    "rows": 200000,
+    "runs": 3
+  },
+  "results": {
+    "ip_table_bytes": {
+      "VARCHAR(45)": 8929280,
+      "INET6": 8929280,
+      "INET4": 6832128
+    },
+    "id_variants": {
+      "CHAR(36), UUID()": {
+        "load_seconds": [
+          0.41145378300006996,
+          0.7093925460001174,
+          0.590775302000111
+        ],
+        "table_bytes": 12124160
+      },
+      "UUID type, UUID()": {
+        "load_seconds": [
+          0.4781291900001179,
+          0.4464346380000279,
+          0.38152975299999525
+        ],
+        "table_bytes": 7880704
+      }
+    }
+  }
+}

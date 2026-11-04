@@ -1,0 +1,223 @@
+{
+  "environment": {
+    "mariadb_version": "10.11.14-MariaDB-0ubuntu0.24.04.1",
+    "os": "Linux-6.18.44-fc-v233-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "cpu_count": 2,
+    "python": "3.13.18",
+    "measured_at_utc": "2026-11-04T13:14:37Z"
+  },
+  "settings": {
+    "rows": 500000,
+    "runs": 3
+  },
+  "results": {
+    "alter_seconds": {
+      "ADD COLUMN, INSTANT": [
+        0.0041937840001082805,
+        0.003647117999889815,
+        0.003261973000007856
+      ],
+      "DROP COLUMN, INSTANT": [
+        0.0050569129998621065,
+        0.005137075999982699,
+        0.004453514000033465
+      ],
+      "MODIFY COLUMN (widen), INSTANT": [
+        0.0030657059999157354,
+        0.003610717000128716,
+        0.0033701950001159275
+      ],
+      "ADD COLUMN, COPY": [
+        0.8943306679998386,
+        0.7138852949999546,
+        0.664521306000097
+      ],
+      "DROP COLUMN, COPY": [
+        0.7290841269998509,
+        0.8836048090001896,
+        0.6760978229999637
+      ],
+      "MODIFY COLUMN (widen), COPY": [
+        0.712139494999974,
+        0.6820451950000006,
+        0.7632028789998913
+      ]
+    },
+    "progress": {
+      "rows": 500000,
+      "rebuild_seconds": 0.734854341000073,
+      "samples": [
+        {
+          "t": 0.012,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 3.991
+        },
+        {
+          "t": 0.023,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 6.657
+        },
+        {
+          "t": 0.033,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 11.396
+        },
+        {
+          "t": 0.044,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 14.833
+        },
+        {
+          "t": 0.055,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 18.084
+        },
+        {
+          "t": 0.066,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 22.66
+        },
+        {
+          "t": 0.076,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 26.462
+        },
+        {
+          "t": 0.087,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 29.782
+        },
+        {
+          "t": 0.098,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 33.697
+        },
+        {
+          "t": 0.108,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 38.127
+        },
+        {
+          "t": 0.119,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 41.454
+        },
+        {
+          "t": 0.13,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 44.8
+        },
+        {
+          "t": 0.141,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 49.677
+        },
+        {
+          "t": 0.151,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 52.89
+        },
+        {
+          "t": 0.162,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 56.168
+        },
+        {
+          "t": 0.172,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 61.051
+        },
+        {
+          "t": 0.183,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 64.294
+        },
+        {
+          "t": 0.194,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 67.6
+        },
+        {
+          "t": 0.205,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 72.329
+        },
+        {
+          "t": 0.216,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 75.308
+        },
+        {
+          "t": 0.226,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 77.848
+        },
+        {
+          "t": 0.237,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 80.997
+        },
+        {
+          "t": 0.248,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 83.728
+        },
+        {
+          "t": 0.258,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 88.198
+        },
+        {
+          "t": 0.269,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 90.88
+        },
+        {
+          "t": 0.28,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 94.404
+        },
+        {
+          "t": 0.29,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 96.829
+        },
+        {
+          "t": 0.301,
+          "stage": 1,
+          "max_stage": 2,
+          "progress_pct": 99.923
+        }
+      ]
+    }
+  }
+}

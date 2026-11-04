@@ -1,0 +1,175 @@
+{
+  "environment": {
+    "mariadb_version": "13.0.2-MariaDB-ubu2604",
+    "os": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+    "cpu_count": 16,
+    "python": "3.15.2",
+    "measured_at_utc": "2026-11-04T16:48:38Z"
+  },
+  "settings": {
+    "rows": 20000,
+    "runs": 3,
+    "reruns": 200,
+    "sessions": 100
+  },
+  "results": {
+    "json_validation": {
+      "constraint": "IS JSON",
+      "rows": 20000,
+      "insert_seconds": {
+        "app_validation": 23.116794100002153,
+        "db_check": 21.461906800002907
+      },
+      "bad_docs_from_second_client": 100,
+      "bad_docs_stored": {
+        "app_validation": 100,
+        "db_check": 0
+      },
+      "rejected_by_db": 100
+    },
+    "rerun_schema": {
+      "DROP IF EXISTS + CREATE": {
+        "statements_per_rerun": 2,
+        "seconds": 9.682559499997296,
+        "reader_ok": 268,
+        "reader_errors": 380,
+        "error_codes": {
+          "1146": 380
+        }
+      },
+      "reruns": 200,
+      "CREATE OR REPLACE": {
+        "statements_per_rerun": 1,
+        "seconds": 10.076363799991668,
+        "reader_ok": 375,
+        "reader_errors": 0,
+        "error_codes": {}
+      }
+    },
+    "cte_dml": {
+      "cte_supported": true,
+      "links": 20000,
+      "stale_links": 10000,
+      "UPDATE": {
+        "in the application": {
+          "statements": 10001,
+          "result_check": [
+            30000,
+            20000
+          ],
+          "mean": 9.794957666667566,
+          "sd": 0.7120722694630459,
+          "min": 9.259834999989835,
+          "max": 10.603148000009242,
+          "runs": [
+            10.603148000009242,
+            9.521890000003623,
+            9.259834999989835
+          ]
+        },
+        "subquery (older versions)": {
+          "statements": 1,
+          "result_check": [
+            30000,
+            20000
+          ],
+          "mean": 0.03439863333672596,
+          "sd": 0.0020969868715830387,
+          "min": 0.0324152000102913,
+          "max": 0.036593199998605996,
+          "runs": [
+            0.03418750000128057,
+            0.0324152000102913,
+            0.036593199998605996
+          ],
+          "sql": "UPDATE feat_links JOIN (SELECT link_id, COUNT(*) AS n FROM feat_clicks GROUP BY link_id) AS counts ON counts.link_id = feat_links.id SET feat_links.click_count = counts.n"
+        },
+        "CTE (12.3+)": {
+          "statements": 1,
+          "result_check": [
+            30000,
+            20000
+          ],
+          "mean": 0.03540249999302129,
+          "sd": 0.0014596568573705686,
+          "min": 0.03416469998774119,
+          "max": 0.037012100001447834,
+          "runs": [
+            0.03503069998987485,
+            0.03416469998774119,
+            0.037012100001447834
+          ],
+          "sql": "WITH counts AS (SELECT link_id, COUNT(*) AS n FROM feat_clicks GROUP BY link_id) UPDATE feat_links JOIN counts ON counts.link_id = feat_links.id SET feat_links.click_count = counts.n"
+        }
+      },
+      "DELETE": {
+        "in the application": {
+          "statements": 10001,
+          "result_check": [
+            0,
+            10000
+          ],
+          "mean": 10.01081786667055,
+          "sd": 0.3302466025787187,
+          "min": 9.7479527000105,
+          "max": 10.381497700000182,
+          "runs": [
+            9.903003200000967,
+            9.7479527000105,
+            10.381497700000182
+          ]
+        },
+        "subquery (older versions)": {
+          "statements": 1,
+          "result_check": [
+            0,
+            10000
+          ],
+          "mean": 0.07775366666222301,
+          "sd": 0.004939504756813696,
+          "min": 0.07400769999367185,
+          "max": 0.08335149999766145,
+          "runs": [
+            0.07590179999533575,
+            0.08335149999766145,
+            0.07400769999367185
+          ],
+          "sql": "DELETE FROM feat_links WHERE id IN (SELECT id FROM (SELECT l.id FROM feat_links l LEFT JOIN feat_clicks c ON c.link_id = l.id WHERE c.link_id IS NULL) AS stale)"
+        },
+        "CTE (12.3+)": {
+          "statements": 1,
+          "result_check": [
+            0,
+            10000
+          ],
+          "mean": 0.0727200666636539,
+          "sd": 0.0037881496828845998,
+          "min": 0.06916629998886492,
+          "max": 0.07670560000406113,
+          "runs": [
+            0.07670560000406113,
+            0.06916629998886492,
+            0.07228829999803565
+          ],
+          "sql": "WITH stale AS (SELECT l.id FROM feat_links l LEFT JOIN feat_clicks c ON c.link_id = l.id WHERE c.link_id IS NULL) DELETE FROM feat_links WHERE id IN (SELECT id FROM stale)"
+        }
+      }
+    },
+    "global_temporary": {
+      "gtt_supported": false,
+      "sessions": 100,
+      "rows_per_session": 50,
+      "CREATE TEMPORARY TABLE per session": {
+        "ddl_statements_per_session": 1,
+        "seconds": 3.9362413000053493,
+        "each_session_saw_only_its_own_rows": true
+      },
+      "GLOBAL TEMPORARY TABLE (12.3+)": "unsupported"
+    },
+    "unsupported_because": {
+      "GLOBAL TEMPORARY TABLE": "1064: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'GLOBAL TEMPORARY TABLE feat_gtt_batch (ip VARCHAR(45) NOT NULL) ON COMMIT PRE...' at line 1"
+    }
+  }
+}

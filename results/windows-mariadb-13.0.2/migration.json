@@ -1,0 +1,253 @@
+{
+  "environment": {
+    "mariadb_version": "13.0.2-MariaDB-ubu2604",
+    "os": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+    "cpu_count": 16,
+    "python": "3.15.2",
+    "measured_at_utc": "2026-11-04T16:45:54Z"
+  },
+  "settings": {
+    "rows": 500000,
+    "runs": 3
+  },
+  "results": {
+    "alter_seconds": {
+      "ADD COLUMN, INSTANT": [
+        0.042387900000903755,
+        0.04209249999257736,
+        0.49304720001237
+      ],
+      "DROP COLUMN, INSTANT": [
+        0.0947260999964783,
+        0.08559859999513719,
+        0.9606066999986069
+      ],
+      "MODIFY COLUMN (widen), INSTANT": [
+        0.047628200001781806,
+        0.039112200000090525,
+        0.41614680000930093
+      ],
+      "ADD COLUMN, COPY": [
+        1.2703000000037719,
+        1.310891700006323,
+        1.5580039999913424
+      ],
+      "DROP COLUMN, COPY": [
+        1.266045700001996,
+        1.2319548000086797,
+        1.4668219999875873
+      ],
+      "MODIFY COLUMN (widen), COPY": [
+        1.1992352999950526,
+        4.849109999995562,
+        2.0921987000037916
+      ]
+    },
+    "progress": {
+      "rows": 500000,
+      "rebuild_seconds": 1.8880672000086633,
+      "samples": [
+        {
+          "t": 0.05,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 0.765
+        },
+        {
+          "t": 0.065,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 5.405
+        },
+        {
+          "t": 0.081,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 6.844
+        },
+        {
+          "t": 0.097,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 11.415
+        },
+        {
+          "t": 0.112,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 16.374
+        },
+        {
+          "t": 0.128,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 19.549
+        },
+        {
+          "t": 0.143,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 23.542
+        },
+        {
+          "t": 0.159,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 28.227
+        },
+        {
+          "t": 0.176,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 33.264
+        },
+        {
+          "t": 0.192,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 35.984
+        },
+        {
+          "t": 0.208,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 39.283
+        },
+        {
+          "t": 0.225,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 44.574
+        },
+        {
+          "t": 0.241,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 46.664
+        },
+        {
+          "t": 0.256,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 50.339
+        },
+        {
+          "t": 0.273,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 53.602
+        },
+        {
+          "t": 0.289,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 55.868
+        },
+        {
+          "t": 0.306,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 61.396
+        },
+        {
+          "t": 0.322,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 63.783
+        },
+        {
+          "t": 0.339,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 66.924
+        },
+        {
+          "t": 0.358,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 69.89
+        },
+        {
+          "t": 0.375,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 72.452
+        },
+        {
+          "t": 0.393,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 75.021
+        },
+        {
+          "t": 0.41,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 77.981
+        },
+        {
+          "t": 0.428,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 77.981
+        },
+        {
+          "t": 0.449,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 82.106
+        },
+        {
+          "t": 0.473,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 83.509
+        },
+        {
+          "t": 0.497,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 87.126
+        },
+        {
+          "t": 0.517,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 89.037
+        },
+        {
+          "t": 0.537,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 89.04
+        },
+        {
+          "t": 0.554,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 91.997
+        },
+        {
+          "t": 0.573,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 94.565
+        },
+        {
+          "t": 0.591,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 95.812
+        },
+        {
+          "t": 0.608,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 100.093
+        }
+      ]
+    }
+  }
+}
