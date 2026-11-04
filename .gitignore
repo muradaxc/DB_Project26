@@ -4,5 +4,5 @@ __pycache__/
 *.pyc
 .pytest_cache/
 out_*.txt
-results/
 results.zip
+results/*-quick/

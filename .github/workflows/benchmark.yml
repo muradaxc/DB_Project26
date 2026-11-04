@@ -1,0 +1,48 @@
+name: Cross-machine benchmark
+
+# Started by hand: Actions tab -> "Cross-machine benchmark" -> "Run workflow".
+# Runs the full measurement on a fresh Ubuntu machine against the pinned MariaDB image and commits
+# the results (results/github-ubuntu-mariadb-13.0.2/), the regenerated README tables and charts.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    services:
+      mariadb:
+        image: mariadb:13.0.2
+        env:
+          MARIADB_ROOT_PASSWORD: bench-root-${{ github.run_id }}
+          MARIADB_DATABASE: shortener
+          MARIADB_USER: app
+          MARIADB_PASSWORD: bench-app-${{ github.run_id }}
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
+    env:
+      DB_HOST: 127.0.0.1
+      DB_USER: app
+      DB_PASSWORD: bench-app-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-dev.txt
+      - name: Full run (tests, all measurements, README tables, charts)
+        run: python python/run_all.py --label github-ubuntu-mariadb-13.0.2 --no-screenshots
+      - name: Commit the results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/github-ubuntu-mariadb-13.0.2 README.md docs/charts
+          git diff --cached --quiet || git commit -m "Add cross-machine benchmark results (GitHub Actions, Ubuntu)"
+          git push

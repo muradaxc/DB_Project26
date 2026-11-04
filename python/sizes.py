@@ -12,6 +12,7 @@ import time
 
 import pymysql
 
+import results_io
 from demo import wait_for_db
 
 # Fixed statements only. Values are passed as parameters, never built into the SQL.
@@ -70,6 +71,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--rows", type=int, default=200_000, help="rows per table (max 1,000,000)")
     parser.add_argument("--runs", type=int, default=3, help="measured load runs per id variant")
+    parser.add_argument("--json", help="also save the results to this JSON file")
     args = parser.parse_args()
     if not 1 <= args.rows <= 1_000_000:
         raise SystemExit("--rows must be between 1 and 1,000,000")
@@ -116,6 +118,17 @@ def main():
             cur.fetchall()
         cur.execute(SIZES_QUERY)
         sizes = dict(cur.fetchall())
+        results_io.save(args.json, cur, args, {
+            "ip_table_bytes": {
+                "VARCHAR(45)": sizes["size_ip_text"],
+                "INET6": sizes["size_ip_inet6"],
+                "INET4": sizes["size_ip_inet4"],
+            },
+            "id_variants": {
+                label: {"load_seconds": id_times[label], "table_bytes": sizes[key]}
+                for label, key, _, _, _ in ID_VARIANTS if label in id_times
+            },
+        })
     finally:
         for statement in CLEANUP:
             cur.execute(statement)

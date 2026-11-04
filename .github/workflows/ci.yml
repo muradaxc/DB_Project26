@@ -30,5 +30,9 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements-dev.txt
-      - run: pytest -q
-      - run: python python/demo.py --rows 200 --runs 1
+      - name: Tests (also load the schema)
+        run: pytest -q
+      - name: Every script once, at small sizes
+        run: python python/run_all.py --quick --skip-tests --no-screenshots --label ci
+      - name: README tables still match results/
+        run: python python/report.py --check

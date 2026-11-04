@@ -1,4 +1,3 @@
-import os
 import pathlib
 import sys
 import time
@@ -34,7 +33,7 @@ def conn():
                 raise
             time.sleep(2)
     cur = connection.cursor()
-    for name in ("01_modern.sql", "02_legacy.sql"):
+    for name in ("01_modern.sql", "02_legacy.sql", "03_app.sql"):
         run_sql_file(cur, ROOT / "sql" / name)
     connection.commit()
     yield connection

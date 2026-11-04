@@ -14,6 +14,8 @@ import uuid
 import pymysql
 from dotenv import load_dotenv
 
+import results_io
+
 load_dotenv()
 
 DB_HOST = os.environ.get("DB_HOST", "127.0.0.1")
@@ -63,7 +65,7 @@ def wait_for_db(timeout=90):
     while True:
         try:
             conn = connect()
-            conn.cursor().execute("SELECT 1 FROM clicks_legacy LIMIT 1")  # created last
+            conn.cursor().execute("SELECT 1 FROM app_clicks LIMIT 1")  # created last (sql/03_app.sql)
             return conn
         except pymysql.err.Error as exc:
             if time.time() > deadline:
@@ -166,6 +168,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--rows", type=int, default=20_000, help="links (and clicks) per run")
     parser.add_argument("--runs", type=int, default=5, help="measured runs (after 1 warm-up)")
+    parser.add_argument("--json", help="also save the results to this JSON file")
     args = parser.parse_args()
 
     conn = wait_for_db()
@@ -198,10 +201,18 @@ def main():
     load_clicks(cur, legacy_ids, args.rows, modern=False)
     conn.commit()
     sizes = get_sizes(cur)
-    conn.close()
 
     m_mean, m_sd, m_min, m_max = summarize(modern_times)
     l_mean, l_sd, l_min, l_max = summarize(legacy_times)
+    results_io.save(args.json, cur, args, {
+        "queries_per_insert": {"modern": modern_q / args.rows, "legacy": legacy_q / args.rows},
+        "insert_seconds": {"modern": modern_times, "legacy": legacy_times},
+        "table_bytes": {
+            "links": sizes["links"], "links_legacy": sizes["links_legacy"],
+            "clicks": sizes["clicks"], "clicks_legacy": sizes["clicks_legacy"],
+        },
+    })
+    conn.close()
 
     print("\n=== Results (paste into README) ===")
     print("| Comparison | Modern | Legacy |")
