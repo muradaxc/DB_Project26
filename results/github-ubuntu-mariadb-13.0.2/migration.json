@@ -1,0 +1,181 @@
+{
+  "environment": {
+    "mariadb_version": "13.0.2-MariaDB-ubu2604",
+    "os": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43",
+    "machine": "x86_64",
+    "processor": null,
+    "cpu_count": 4,
+    "python": "3.12.16",
+    "measured_at_utc": "2026-11-04T18:17:52Z"
+  },
+  "settings": {
+    "rows": 500000,
+    "runs": 3
+  },
+  "results": {
+    "alter_seconds": {
+      "ADD COLUMN, INSTANT": [
+        0.002840866999974878,
+        0.002195267999979933,
+        0.0022522040000012566
+      ],
+      "DROP COLUMN, INSTANT": [
+        0.0032866800000306284,
+        0.0032632389999776024,
+        0.0027620540000157234
+      ],
+      "MODIFY COLUMN (widen), INSTANT": [
+        0.0020179570000209424,
+        0.0020135569999979452,
+        0.0021416559999920537
+      ],
+      "ADD COLUMN, COPY": [
+        0.5141734750000069,
+        0.5071573189999867,
+        0.5017812219999769
+      ],
+      "DROP COLUMN, COPY": [
+        0.49855354499999294,
+        0.507071714999995,
+        0.493488162999995
+      ],
+      "MODIFY COLUMN (widen), COPY": [
+        0.4981408720000218,
+        0.49157412599998906,
+        0.49482000599999765
+      ]
+    },
+    "progress": {
+      "rows": 500000,
+      "rebuild_seconds": 0.5056836499999804,
+      "samples": [
+        {
+          "t": 0.012,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 5.728
+        },
+        {
+          "t": 0.023,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 9.583
+        },
+        {
+          "t": 0.033,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 13.665
+        },
+        {
+          "t": 0.044,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 17.71
+        },
+        {
+          "t": 0.055,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 22.661
+        },
+        {
+          "t": 0.066,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 28.18
+        },
+        {
+          "t": 0.076,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 32.967
+        },
+        {
+          "t": 0.087,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 37.089
+        },
+        {
+          "t": 0.098,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 41.341
+        },
+        {
+          "t": 0.109,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 45.562
+        },
+        {
+          "t": 0.119,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 50.256
+        },
+        {
+          "t": 0.13,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 55.774
+        },
+        {
+          "t": 0.141,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 60.693
+        },
+        {
+          "t": 0.152,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 64.836
+        },
+        {
+          "t": 0.163,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 69.074
+        },
+        {
+          "t": 0.173,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 73.371
+        },
+        {
+          "t": 0.184,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 77.85
+        },
+        {
+          "t": 0.195,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 83.369
+        },
+        {
+          "t": 0.205,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 88.766
+        },
+        {
+          "t": 0.216,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 93.12
+        },
+        {
+          "t": 0.227,
+          "stage": 1,
+          "max_stage": 4,
+          "progress_pct": 97.409
+        }
+      ]
+    }
+  }
+}

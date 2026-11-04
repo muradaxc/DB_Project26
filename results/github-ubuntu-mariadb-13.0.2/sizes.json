@@ -1,0 +1,56 @@
+{
+  "environment": {
+    "mariadb_version": "13.0.2-MariaDB-ubu2604",
+    "os": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43",
+    "machine": "x86_64",
+    "processor": null,
+    "cpu_count": 4,
+    "python": "3.12.16",
+    "measured_at_utc": "2026-11-04T18:17:41Z"
+  },
+  "settings": {
+    "rows": 200000,
+    "runs": 3
+  },
+  "results": {
+    "ip_table_bytes": {
+      "VARCHAR(45)": 8929280,
+      "INET6": 8929280,
+      "INET4": 6832128
+    },
+    "id_variants": {
+      "CHAR(36), UUID()": {
+        "load_seconds": [
+          0.4956901470000048,
+          0.49691157000000885,
+          0.46782446899999286
+        ],
+        "table_bytes": 12124160
+      },
+      "UUID type, UUID()": {
+        "load_seconds": [
+          0.2732839420000346,
+          0.2720326169999794,
+          0.2720943819999775
+        ],
+        "table_bytes": 7880704
+      },
+      "UUID type, UUID_v4()": {
+        "load_seconds": [
+          0.5111133170000244,
+          0.515119062999986,
+          0.5147064370000294
+        ],
+        "table_bytes": 12075008
+      },
+      "UUID type, UUID_v7()": {
+        "load_seconds": [
+          0.39687057599996933,
+          0.4035763140000199,
+          0.39773463899996386
+        ],
+        "table_bytes": 7880704
+      }
+    }
+  }
+}

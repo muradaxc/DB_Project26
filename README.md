@@ -321,6 +321,7 @@ Claude's test environment, which shows which features an older server lacks.
 <!-- BEGIN:machines -->
 | Machine | MariaDB | OS | Inserts modern / legacy (s) | `UUID` vs `CHAR(36)` table | ADD COLUMN INSTANT / COPY (s) | `CREATE OR REPLACE` reader errors | CTE DML | Global temp. tables |
 |---|---|---|---|---|---|---|---|---|
+| `github-ubuntu-mariadb-13.0.2` | 13.0.2 | Linux | 3.87 / 7.56 | 7,880,704 vs 12,124,160 | 0.002 / 0.507 | 0 | yes | no |
 | `sandbox-linux-mariadb-10.11.14` | 10.11.14 | Linux | 2.33 / 4.10 | 7,880,704 vs 12,124,160 | 0.004 / 0.714 | 0 | no | no |
 | `windows-mariadb-13.0.2` | 13.0.2 | Windows | 23.79 / 43.09 | 7,880,704 vs 12,124,160 | 0.042 / 1.311 | 0 | yes | no |
 <!-- END:machines -->
